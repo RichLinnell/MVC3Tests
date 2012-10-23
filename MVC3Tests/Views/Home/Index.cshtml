@@ -11,7 +11,7 @@
     <ul>
         @foreach(var fund in Model)
         {
-            <li><div>@Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) @fund.Name</div></li>
+            <li><div>@Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) @fund.Manager.Name >> @fund.Name</div></li>
         }
     </ul>
     @Html.ActionLink("Create New", "Create", "Fund")

@@ -20,7 +20,7 @@ namespace MVC3Tests.Controllers
 
         public ActionResult Create()
         {
-            Repository repository = new Repository();
+            SystemEntities repository = new SystemEntities();
             Fund model = new Fund();
             PopulateViewBag();
             return View(model);
@@ -34,8 +34,9 @@ namespace MVC3Tests.Controllers
         {
             if(ModelState.IsValid)
             {
-                Repository repository = new Repository();
+                SystemEntities repository = new SystemEntities();
                 repository.Funds.Add(fund);
+                repository.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
             PopulateViewBag();
@@ -48,7 +49,7 @@ namespace MVC3Tests.Controllers
  
         public ActionResult Edit(int id)
         {
-            Repository repository = new Repository();
+            SystemEntities repository = new SystemEntities();
             Fund model = repository.Funds.Single(f => f.ID == id);
             PopulateViewBag();
             return View(model);
@@ -60,10 +61,11 @@ namespace MVC3Tests.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            Repository repository = new Repository();
-            Fund fund = repository.Funds.Single(f => f.ID == id);
+            SystemEntities repository = new SystemEntities();
+            Fund fund = repository.Funds.Find(id);
             if(TryUpdateModel(fund))
             {
+                repository.SaveChanges();
                 return RedirectToAction("index", "Home");
             }
             else
@@ -101,7 +103,7 @@ namespace MVC3Tests.Controllers
 
         private void PopulateViewBag()
         {
-            Repository repository = new Repository();
+            SystemEntities repository = new SystemEntities();
             ViewBag.Managers = repository.Managers;
             ViewBag.Strategies = repository.Strategies;
         }

@@ -12,7 +12,7 @@ namespace MVC3Tests.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to DevExpress Extensions for ASP.NET MVC!";
-            IEnumerable<Fund> model = new Repository().Funds;
+            IEnumerable<Fund> model = new SystemEntities().Funds.Include("Manager");
             return View(model);
         }
     }

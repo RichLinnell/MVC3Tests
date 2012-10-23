@@ -70,9 +70,10 @@ textarea
 
 th {
     text-align: left;
-    background-color: rgb(7, 7, 125);
+
     padding-bottom: 4px;
     padding-top: 2px;
+    background-color: rgb(2, 117, 58);
     color: white;
     padding-left: 10px;
 }

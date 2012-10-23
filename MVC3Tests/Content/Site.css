@@ -67,3 +67,18 @@ textarea
 {
     display: none;
 }
+
+th {
+    text-align: left;
+    background-color: rgb(7, 7, 125);
+    color: white;
+    padding-left: 10px;
+}
+table {
+    border: 1px solid grey;
+}
+td {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+

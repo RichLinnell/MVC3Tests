@@ -8,11 +8,26 @@
 
 <h2>@ViewBag.Message</h2>
 <p>
-    <ul>
-        @foreach(var fund in Model)
+    <table>
+        <tr>
+            <th>Manager</th>
+            <th>Fund</th>
+            <th></th>
+        </tr>
+    @foreach(var fund in Model)
         {
-            <li><div>@Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) @fund.Manager.Name >> @fund.Name</div></li>
+            <tr>
+                <td>
+                    @fund.Manager.Name 
+                </td>
+                <td>
+                    @fund.Name  
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) 
+                </td>
+            </tr> 
         }
-    </ul>
+    </table>
     @Html.ActionLink("Create New", "Create", "Fund")
 </p>

@@ -1,6 +1,6 @@
 ﻿@using MVC3Tests.Models
 
-@model IEnumerable<Fund>
+@model IEnumerable<Manager>
 
 @{
     ViewBag.Title = "Home Page";
@@ -14,20 +14,32 @@
             <th>Fund</th>
             <th></th>
         </tr>
-    @foreach(var fund in Model)
+        
+    @foreach (var manager in Model)
+    {
+        var numFunds = manager.Funds.Count;
+        bool manName = true;
+        foreach (var fund in manager.Funds)
         {
             <tr>
-                <td>
-                    @fund.Manager.Name 
-                </td>
+                @if (manName)
+                {
+                    <td rowspan="@numFunds">
+                        @manager.Name 
+                        @{
+                            manName= false;
+                        }
+                    </td>
+                }
                 <td>
                     @fund.Name  
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) 
+                    @Html.ActionLink("Edit", "Edit", "Fund", new {fund.ID}, new {}) 
                 </td>
-            </tr> 
+            </tr>
         }
+    }
     </table>
     @Html.ActionLink("Create New", "Create", "Fund")
 </p>

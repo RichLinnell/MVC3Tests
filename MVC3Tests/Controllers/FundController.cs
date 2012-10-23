@@ -22,8 +22,7 @@ namespace MVC3Tests.Controllers
         {
             Repository repository = new Repository();
             Fund model = new Fund();
-            ViewBag.Strategies = repository.Strategies;
-            ViewBag.Managers = repository.Managers;
+            PopulateViewBag();
             return View(model);
         } 
 
@@ -33,16 +32,15 @@ namespace MVC3Tests.Controllers
         [HttpPost]
         public ActionResult Create(Fund fund)
         {
-            try
+            if(ModelState.IsValid)
             {
                 Repository repository = new Repository();
                 repository.Funds.Add(fund);
                 return RedirectToAction("Index", "Home");
             }
-            catch
-            {
-                return View();
-            }
+            PopulateViewBag();
+            return View(fund);
+            
         }
         
         //
@@ -52,8 +50,7 @@ namespace MVC3Tests.Controllers
         {
             Repository repository = new Repository();
             Fund model = repository.Funds.Single(f => f.ID == id);
-            ViewBag.Strategies = repository.Strategies;
-            ViewBag.Managers = repository.Managers;
+            PopulateViewBag();
             return View(model);
         }
 
@@ -71,8 +68,7 @@ namespace MVC3Tests.Controllers
             }
             else
             {
-                ViewBag.Managers = repository.Managers;
-                ViewBag.Strategies = repository.Strategies;
+                PopulateViewBag();
                 return View(fund);    
             }
         }
@@ -102,5 +98,12 @@ namespace MVC3Tests.Controllers
         //        return View();
         //    }
         //}
+
+        private void PopulateViewBag()
+        {
+            Repository repository = new Repository();
+            ViewBag.Managers = repository.Managers;
+            ViewBag.Strategies = repository.Strategies;
+        }
     }
 }

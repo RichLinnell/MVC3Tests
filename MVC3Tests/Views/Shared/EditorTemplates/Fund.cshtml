@@ -31,22 +31,19 @@
             @Html.LabelFor(model => model.ManagerID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ManagerID)
-            @Html.ValidationMessageFor(model => model.ManagerID)
+            @Html.DropDownList("ManagerID", new SelectList(ViewBag.Managers as System.Collections.IEnumerable, "ID", "Name", Model.ManagerID))
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.StrategyID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.StrategyID)
-            @Html.ValidationMessageFor(model => model.StrategyID)
+            @Html.DropDownList("StrategyID", new SelectList(ViewBag.Strategies as System.Collections.IEnumerable, "ID", "Name", Model.StrategyID))
         </div>
 
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
-}
 
 

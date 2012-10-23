@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC3Tests.Models;
 
 namespace MVC3Tests.Controllers
 {
@@ -45,7 +46,11 @@ namespace MVC3Tests.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            Repository repository = new Repository();
+            Fund model = repository.Funds.Single(f => f.ID == id);
+            ViewBag.Strategies = repository.Strategies;
+            ViewBag.Managers = repository.Managers;
+            return View(model);
         }
 
         //

@@ -12,25 +12,7 @@ namespace MVC3Tests.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to DevExpress Extensions for ASP.NET MVC!";
-            var model = new List<Fund>
-                            {
-                                new Fund()
-                                    {
-                                        Code = "DKD",
-                                        ID = 1,
-                                        Name = "DK Distressed",
-                                        ManagerID = 1,
-                                        StrategyID = 1,
-                                    },
-                                new Fund()
-                                    {
-                                        Code = "LakeW",
-                                        ID = 2,
-                                        ManagerID = 2,
-                                        Name = "Lakewood",
-                                        StrategyID = 2,
-                                    }
-                            };
+            IEnumerable<Fund> model = new Repository().Funds;
             return View(model);
         }
     }

@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Models\Fund.cs" />
     <Compile Include="Models\Manager.cs" />
+    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Strategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -175,7 +176,7 @@
     <Content Include="Views\Fund\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\EditTemplates\Fund.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Fund.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

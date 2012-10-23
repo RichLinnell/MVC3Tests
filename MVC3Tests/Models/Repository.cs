@@ -7,11 +7,7 @@ namespace MVC3Tests.Models
 {
     public class Repository
     {
-        public IEnumerable<Fund> Funds
-        {
-            get
-            {
-                return new List<Fund>
+        private static IList<Fund> _funds = new List<Fund>
                            {
                                new Fund()
                                    {
@@ -30,14 +26,8 @@ namespace MVC3Tests.Models
                                        StrategyID = 2,
                                    }
                            };
-            }
-        }
 
-        public IEnumerable<Strategy> Strategies
-        {
-            get
-            {
-                return new Strategy[]
+        private static IList<Strategy> _strategies = new List<Strategy>
                            {
                                new Strategy
                                    {
@@ -50,15 +40,8 @@ namespace MVC3Tests.Models
                                        Name = "Distressed Denim Credit"
                                    }
                            };
-            }
-        }
 
-        public IEnumerable<Manager> Managers
-        {
-            get
-            {
-                return new Manager[]
-                           {
+        private static IList<Manager> _managers = new List<Manager> {
                                new Manager
                                    {
                                        ID = 1,
@@ -71,7 +54,20 @@ namespace MVC3Tests.Models
                                    },
 
                            };
-            }
+
+        public IList<Fund> Funds
+        {
+            get { return _funds; }
+        }
+
+        public IList<Strategy> Strategies
+        {
+            get { return _strategies; }
+        }
+
+        public IEnumerable<Manager> Managers
+        {
+            get { return _managers; }
         }
     }
 }

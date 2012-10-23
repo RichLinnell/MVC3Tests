@@ -1,0 +1,28 @@
+﻿@model MVC3Tests.Models.Fund
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Create New Fund</title>
+    </head>
+    <body>
+        <div>
+              @using(Html.BeginForm())
+              {
+                  @Html.ValidationSummary(true)
+                  <fieldset>
+                      <legend>Create Fund</legend>
+                      @Html.EditorForModel()
+                      <p>
+                          <input type="submit" value="Create"/>
+                      </p>
+                  </fieldset>
+              }
+        </div>
+    </body>
+</html>

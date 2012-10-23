@@ -8,9 +8,11 @@
 
 <h2>@ViewBag.Message</h2>
 <p>
-    @foreach(var fund in Model)
-    {
-        <div>@Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) @fund.Name</div>
-
-    }
+    <ul>
+        @foreach(var fund in Model)
+        {
+            <li><div>@Html.ActionLink("Edit", "Edit", "Fund", new { fund.ID }, new{}) @fund.Name</div></li>
+        }
+    </ul>
+    @Html.ActionLink("Create New", "Create", "Fund")
 </p>

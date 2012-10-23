@@ -15,31 +15,35 @@ namespace MVC3Tests.Controllers
         //    return View();
         //}
 
-        ////
-        //// GET: /Fund/Create
-
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //} 
-
         //
-        // POST: /Fund/Create
+        // GET: /Fund/Create
 
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        public ActionResult Create()
+        {
+            Repository repository = new Repository();
+            Fund model = new Fund();
+            ViewBag.Strategies = repository.Strategies;
+            ViewBag.Managers = repository.Managers;
+            return View(model);
+        } 
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        
+        //POST: /Fund/Create
+
+        [HttpPost]
+        public ActionResult Create(Fund fund)
+        {
+            try
+            {
+                Repository repository = new Repository();
+                repository.Funds.Add(fund);
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         
         //
         // GET: /Fund/Edit/5
@@ -59,15 +63,17 @@ namespace MVC3Tests.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            Repository repository = new Repository();
+            Fund fund = repository.Funds.Single(f => f.ID == id);
+            if(TryUpdateModel(fund))
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("index", "Home");
             }
-            catch
+            else
             {
-                return View();
+                ViewBag.Managers = repository.Managers;
+                ViewBag.Strategies = repository.Strategies;
+                return View(fund);    
             }
         }
 
